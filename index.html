@@ -3,144 +3,213 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ulanzi A100 Order Page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f8f8f8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    header {
-      background: #1e90ff;
-      color: white;
-      width: 100%;
-      padding: 30px 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-    main {
-      max-width: 500px;
-      width: 90%;
-      background: white;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    h2 {
-      text-align: center;
-      margin: 20px 0 10px;
-    }
-    p.description {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #333;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    input, textarea, button {
-      margin-bottom: 15px;
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background: #1e90ff;
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #0b6fc2;
-    }
-    button:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #666;
-    }
-  </style>
+  <title>YN Rice Cooker - 1.8L Perfect Rice Every Time</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>Ulanzi A100 Microphone</h1>
-</header>
-<main>
-  <img src="https://i.imgur.com/2oXr1Lk.jpg" alt="Ulanzi A100 Microphone">
-  <h2>Order Now</h2>
-  <p class="description">Capture professional-quality audio anywhere! Perfect for vlogs, YouTube, streaming, and interviews.</p>
-  <form id="orderForm">
-    <input type="text" name="name" placeholder="Full Name" required>
-    <input type="tel" name="mobile" placeholder="Mobile Number" required>
-    <textarea name="address" placeholder="Shipping Address" rows="3" required></textarea>
-    <input type="hidden" name="product" value="Ulanzi A100 Microphone">
-    <button type="submit">Place Order</button>
-  </form>
-</main>
-<footer>
-  &copy; 2025 Alpha Accessories
-</footer>
-<!-- Sheet ID: 1tMkZP5oajgAKE2NF3UCJWyBRdBmHSioPezEkZ-gslVg -->
-<script>
-const form = document.getElementById('orderForm');
-const button = form.querySelector('button[type="submit"]');
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <h1>YN Cooker</h1>
+        <p class="tagline">Perfect Rice, Every Time</p>
+      </div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#order">Order Now</a>
+      </nav>
+    </div>
+  </header>
 
-form.addEventListener('submit', function(e){
-  e.preventDefault();
-  
-  button.disabled = true;
-  button.textContent = 'Submitting...';
-  
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxGrBPjCSpnQ6kWaTsiU-ZVwTzTKQZ3oKu23eoRj2b9lNWb8kbQtf3rCXned9Ga3NG7/exec';
-  
-  const formData = new FormData();
-  formData.append('name', form.name.value);
-  formData.append('mobile', form.mobile.value);
-  formData.append('address', form.address.value);
-  formData.append('product', form.product.value);
-  
-  fetch(scriptURL, { 
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Response data:', data);
-    if (data.result === 'success') {
-      alert("Order placed successfully! We will contact you soon.");
-      form.reset();
-    } else {
-      alert("Error: " + (data.error || 'Unknown error occurred'));
-      console.error('Server error:', data);
-    }
-    button.disabled = false;
-    button.textContent = 'Place Order';
-  })
-  .catch(err => {
-    console.error('Error details:', err);
-    alert("Network error. Please check your connection and try again.");
-    button.disabled = false;
-    button.textContent = 'Place Order';
-  });
-});
-</script>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>YN Rice Cooker 1.8L</h2>
+      <p class="hero-subtitle">Cook delicious rice for your entire family with ease</p>
+      <a href="#order" class="cta-button">Order Now</a>
+    </div>
+    <div class="hero-image">
+      <img src="media/image1.jpg" alt="YN Rice Cooker 1.8L">
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Why Choose YN Cooker?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🍚</div>
+          <h3>1.8L Capacity</h3>
+          <p>Perfect for families of 4-6 people. Cook enough rice for everyone in one go.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Fast Cooking</h3>
+          <p>Advanced heating technology cooks rice faster while preserving nutrients.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Easy to Use</h3>
+          <p>One-touch operation with automatic keep-warm function. Simple and convenient.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <h3>Non-Stick Inner Pot</h3>
+          <p>Premium non-stick coating ensures easy cleaning and perfect rice every time.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Safety First</h3>
+          <p>Auto shut-off and overheat protection for peace of mind cooking.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3>Energy Efficient</h3>
+          <p>Low power consumption saves electricity while delivering perfect results.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="video-section">
+    <div class="container">
+      <h2 class="section-title">See It In Action</h2>
+      <div class="video-wrapper">
+        <video controls poster="media/image2.jpg">
+          <source src="media/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2 class="section-title">Product Gallery</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="media/image1.jpg" alt="YN Rice Cooker Front View">
+        </div>
+        <div class="gallery-item">
+          <img src="media/image2.jpg" alt="YN Rice Cooker In Use">
+        </div>
+        <div class="gallery-item">
+          <img src="media/image1.jpg" alt="YN Rice Cooker Details">
+        </div>
+        <div class="gallery-item">
+          <img src="media/image2.jpg" alt="Perfectly Cooked Rice">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specifications Section -->
+  <section class="specs">
+    <div class="container">
+      <h2 class="section-title">Technical Specifications</h2>
+      <div class="specs-content">
+        <div class="specs-image">
+          <img src="media/image2.jpg" alt="YN Rice Cooker Specifications">
+        </div>
+        <div class="specs-list">
+          <div class="spec-item">
+            <strong>Capacity:</strong>
+            <span>1.8 Liters</span>
+          </div>
+          <div class="spec-item">
+            <strong>Power:</strong>
+            <span>700W</span>
+          </div>
+          <div class="spec-item">
+            <strong>Voltage:</strong>
+            <span>220-240V</span>
+          </div>
+          <div class="spec-item">
+            <strong>Inner Pot:</strong>
+            <span>Non-stick Aluminum</span>
+          </div>
+          <div class="spec-item">
+            <strong>Functions:</strong>
+            <span>Cook & Keep Warm</span>
+          </div>
+          <div class="spec-item">
+            <strong>Warranty:</strong>
+            <span>1 Year</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Form Section -->
+  <section id="order" class="order-section">
+    <div class="container">
+      <div class="order-content">
+        <div class="order-info">
+          <h2>Order Your YN Rice Cooker Today!</h2>
+          <p class="price">Special Price: <span class="price-amount">৳2,999</span></p>
+          <ul class="order-benefits">
+            <li>✓ Free Home Delivery</li>
+            <li>✓ Cash on Delivery Available</li>
+            <li>✓ 1 Year Warranty</li>
+            <li>✓ 7 Days Return Policy</li>
+          </ul>
+        </div>
+        <div class="order-form-wrapper">
+          <form id="orderForm" class="order-form">
+            <h3>Fill in Your Details</h3>
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+              <input type="tel" name="mobile" placeholder="Mobile Number" required>
+            </div>
+            <div class="form-group">
+              <textarea name="address" placeholder="Complete Shipping Address" rows="3" required></textarea>
+            </div>
+            <input type="hidden" name="product" value="YN Rice Cooker 1.8L">
+            <button type="submit" class="submit-button">
+              <span class="button-text">Place Order Now</span>
+            </button>
+            <p class="form-note">We'll contact you to confirm your order</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>YN Cooker</h4>
+          <p>Your trusted partner for quality kitchen appliances.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Us</h4>
+          <p>Phone: +880 1XXX-XXXXXX</p>
+          <p>Email: info@yncooker.com</p>
+        </div>
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 YN Cooker. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
