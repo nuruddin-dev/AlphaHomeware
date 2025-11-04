@@ -109,26 +109,32 @@ form.addEventListener('submit', function(e){
   button.disabled = true;
   button.textContent = 'Submitting...';
   
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyDPfMA2fr1hxr-6zg8L26wxMDrLCrh2wpkWAijNa3B_gJ4akODtzQ7JAp13Wf91R9WGw/exec';
+  
   const formData = new FormData();
   formData.append('name', form.name.value);
   formData.append('mobile', form.mobile.value);
   formData.append('address', form.address.value);
   formData.append('product', form.product.value);
   
-  fetch('https://script.google.com/macros/s/AKfycbyDPfMA2fr1hxr-6zg8L26wxMDrLCrh2wpkWAijNa3B_gJ4akODtzQ7JAp13Wf91R9WGw/exec', { 
+  fetch(scriptURL, { 
     method: 'POST',
-    mode: 'no-cors',
     body: formData
   })
-  .then(() => {
+  .then(response => {
+    console.log('Response:', response);
+    return response.text();
+  })
+  .then(data => {
+    console.log('Success:', data);
     alert("Order placed successfully! We will contact you soon.");
     form.reset();
     button.disabled = false;
     button.textContent = 'Place Order';
   })
   .catch(err => {
-    console.error(err);
-    alert("Something went wrong. Please try again.");
+    console.error('Error details:', err);
+    alert("Error: " + err.message + "\n\nPlease check the console for details or contact support.");
     button.disabled = false;
     button.textContent = 'Place Order';
   });
