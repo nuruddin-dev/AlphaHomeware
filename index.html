@@ -109,7 +109,7 @@ form.addEventListener('submit', function(e){
   button.disabled = true;
   button.textContent = 'Submitting...';
   
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbyDtWC5lfg9p2vIxSzQyTuoqODf5J5iQkh60BZrHUau8xZEVR8DtpEGhA6U7tguDBVDBg/exec';
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxaLBntqiYDI3Ghh2SYbFgDvXt1AUz6HzSW4StSkqIe20uQYrk59peMSb3jnkVWFS7X/exec';
   
   const formData = new FormData();
   formData.append('name', form.name.value);
@@ -121,20 +121,22 @@ form.addEventListener('submit', function(e){
     method: 'POST',
     body: formData
   })
-  .then(response => {
-    console.log('Response:', response);
-    return response.text();
-  })
+  .then(response => response.json())
   .then(data => {
-    console.log('Success:', data);
-    alert("Order placed successfully! We will contact you soon.");
-    form.reset();
+    console.log('Response data:', data);
+    if (data.result === 'success') {
+      alert("Order placed successfully! We will contact you soon.");
+      form.reset();
+    } else {
+      alert("Error: " + (data.error || 'Unknown error occurred'));
+      console.error('Server error:', data);
+    }
     button.disabled = false;
     button.textContent = 'Place Order';
   })
   .catch(err => {
     console.error('Error details:', err);
-    alert("Error: " + err.message + "\n\nPlease check the console for details or contact support.");
+    alert("Network error. Please check your connection and try again.");
     button.disabled = false;
     button.textContent = 'Place Order';
   });
