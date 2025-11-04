@@ -68,6 +68,10 @@
     button:hover {
       background: #0b6fc2;
     }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
     footer {
       text-align: center;
       padding: 20px;
@@ -76,16 +80,13 @@
   </style>
 </head>
 <body>
-
 <header>
   <h1>Ulanzi A100 Microphone</h1>
 </header>
-
 <main>
   <img src="https://i.imgur.com/2oXr1Lk.jpg" alt="Ulanzi A100 Microphone">
   <h2>Order Now</h2>
   <p class="description">Capture professional-quality audio anywhere! Perfect for vlogs, YouTube, streaming, and interviews.</p>
-
   <form id="orderForm">
     <input type="text" name="name" placeholder="Full Name" required>
     <input type="tel" name="mobile" placeholder="Mobile Number" required>
@@ -94,39 +95,44 @@
     <button type="submit">Place Order</button>
   </form>
 </main>
-
 <footer>
   &copy; 2025 Alpha Accessories
 </footer>
-
+<!-- Sheet ID: 1tMkZP5oajgAKE2NF3UCJWyBRdBmHSioPezEkZ-gslVg -->
 <script>
 const form = document.getElementById('orderForm');
+const button = form.querySelector('button[type="submit"]');
+
 form.addEventListener('submit', function(e){
   e.preventDefault();
   
-  const data = {
-    name: form.name.value,
-    mobile: form.mobile.value,
-    address: form.address.value,
-    product: form.product.value
-  };
-
+  button.disabled = true;
+  button.textContent = 'Submitting...';
+  
+  const formData = new FormData();
+  formData.append('name', form.name.value);
+  formData.append('mobile', form.mobile.value);
+  formData.append('address', form.address.value);
+  formData.append('product', form.product.value);
+  
   fetch('https://script.google.com/macros/s/AKfycbyDPfMA2fr1hxr-6zg8L26wxMDrLCrh2wpkWAijNa3B_gJ4akODtzQ7JAp13Wf91R9WGw/exec', { 
     method: 'POST',
-    body: JSON.stringify(data),
-    headers: {'Content-Type': 'application/json'}
+    mode: 'no-cors',
+    body: formData
   })
-  .then(res => res.json())
-  .then(resp => {
+  .then(() => {
     alert("Order placed successfully! We will contact you soon.");
     form.reset();
+    button.disabled = false;
+    button.textContent = 'Place Order';
   })
   .catch(err => {
     console.error(err);
     alert("Something went wrong. Please try again.");
+    button.disabled = false;
+    button.textContent = 'Place Order';
   });
 });
 </script>
-
 </body>
 </html>
